@@ -34,9 +34,18 @@ But also:
 - kuttl
 - golang
 
-### Running tests
+There are a couple other things you have to do first to get this running:
 
-Unfortunately the credentials for S3 are not included in this git repo.
+- Somewhere in the files, there should be some secrets/credentials that are NOT included the git repo, ask sjuul for this. (secrets.tar)
+- You should also edit the hosts file 
+  - Mac/Linux Location: etc/hosts
+  - Windows location: c:\Windows\System32\Drivers\etc\hosts
+```
+ In the hosts file change the following:
+ Remove "127.0.0.1"
+ Add "127.0.0.1	localhost postgres.postgres.svc.cluster.local mysql.mysql.svc.cluster.local"
+```
+### Running tests
 
 Quick way:
 
@@ -69,12 +78,6 @@ make generate-deploys
 ```
 
 ### Running the operator on your machine with the resources in Kind cluster
-
-add this line to your `/etc/hosts` file:
-
-```
-127.0.0.1	localhost postgres.postgres.svc.cluster.local mysql.mysql.svc.cluster.local
-```
 
 ```
 make start-test-cluster
